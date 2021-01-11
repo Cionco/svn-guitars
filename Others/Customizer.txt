@@ -1,0 +1,135 @@
+Customized Level
+	Basic
+	Medium
+	Custom Appearance
+	Custom All
+
+Form (basic)
+	Strat
+	Tele
+	Les Paul
+	Jazzmaster
+	Z
+	Custom
+	
+Strings (basic)
+	6 String
+	7 String
+
+Bauart (medium)
+	Hohl (default)
+	Chambered
+	Massiv
+	
+Orientierung (basic)
+	Rechts
+	Links
+	
+Holz Körper (Nur bei geölt und klarlack) (medium)
+	Mahagoni (default)
+	Black Korina
+	Ahorn
+	Pappel
+	Walnuss
+	
+Holz Körper Top (medium)
+	Mahagoni (default)
+	Black Korina
+	Ahorn
+	Pappel
+	Walnuss
+	
+Körper mehrfach verleimt (c.a.)
+	Ja (später persönlich besprechen)
+	Nein
+		
+Elektronik Fach (basic)
+	Vorne
+	Hinten
+	
+Pickup routs (Check box) (basic)
+	Neck
+	Middle
+	Bridge
+
+F Hole (Nur wenn hollow) (basic)
+	Ja (Design wird später besprochen)
+	Nein
+	
+Controls (basic)
+	Platte
+	ins Holz
+	
+Kabelbuchse (basic)
+	Vorne
+	Seite
+	Hinten
+	
+Bridge (medium)
+	Tremolo
+	Hard Tail (default)
+	(Floyd Rose)
+	
+Konturen (medium) (default ist nach unserem Auge)
+	Tummycut
+	Armablage
+	
+Binding (c.a.)
+	Nein (default)
+	Top Binding
+	Back Binding
+	
+Körper Finish (basic)
+	Geölt
+	Klarlack Glänzend
+	Klarlack Satin
+	Farbig/Design
+
+Holz Hals (medium)
+	Mahagoni (default)
+	Ahorn
+	
+Hals mehrfach verleimt (c.a.)
+	Ja (später persönlich besprechen)
+	Nein (default)
+	
+Bauart (basic)
+	Strat
+	Tele
+	Les Paul
+	Custom
+	
+Sattel Breite (custom)
+	Default (modellabhängig meist 42mm)
+	Selbst eintragen
+	
+Griffbrett Radius (custom ^10)
+	10"
+	11"
+	12"
+	16"
+	
+Bund Anzahl (custom)
+	22
+	24
+	
+Inlays besprechen (custom)
+	Dot (default)
+	Crown
+	Rectangle
+	Custom
+
+Finish Hals (basic)
+	Geölt
+	Klarlack Glänzend
+	Klarlack Satin
+	Farbig
+	
+	
+	
+	
+	
+	
+	
+	
+	

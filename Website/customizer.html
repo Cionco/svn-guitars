@@ -62,235 +62,238 @@
         </nav>
         <div class="container mt-3">
             <div>
-            
-            </div>
-            <div>
                 <label for="customization_level">Customizing</label>
                 <select name="customization_level" onchange="custom_change(this);">
                     <option value=1>Basic</option>
                     <option value=2>Medium</option>
                     <option value=3>Custom Appearance</option>
-                    <option value=4>Custom All</option>
+                    <option value=4 selected>Custom All</option>
                 </select>
             </div>    
+            
+            <hr>
 
-            <div class="customizeobj" data-level=1>
+            <div class="customizeobj mt-4" data-level=1>
                 <label for="form">Form</label>
                 <select name="form">
-                    <option>Stratocaster</option>
-                    <option>Telecaster</option>
-                    <option>Les Paul</option>
-                    <option>Jazzmaster</option>
-                    <option>Z</option>
-                    <option>Custom</option>
+                    <option value="0">Stratocaster</option>
+                    <option value="1">Telecaster</option>
+                    <option value="2">Les Paul</option>
+                    <option value="3">Jazzmaster</option>
+                    <option value="4">Z</option>
+                    <option value="5">Custom</option>
                 </select>
             </div> 
 
             <div class="customizeobj" data-level=1>
                 <label for="strings">Saiten</label>
                 <select name="strings">
-                    <option>6 String</option>
-                    <option>7 String</option>
+                    <option value="6">6 String</option>
+                    <option value="7">7 String</option>
                 </select>
             </div>
 
             <div class="customizeobj" data-level=2>
                 <label for="construction">Bauart</label>
                 <select name="construction">
-                    <option>Hohl</option>
-                    <option>Chambered</option>
-                    <option>Massiv</option>
+                    <option value="0">Hohl</option>
+                    <option value="1">Chambered</option>
+                    <option value="2">Massiv</option>
                 </select>
             </div>
 
             <div class="customizeobj" data-level=1>
                 <label for="orientation">Ausrichtung</label>
                 <select name="orientation">
-                    <option>Rechtshänder</option>
-                    <option>Linkshänder</option>
+                    <option value="0">Rechtshänder</option>
+                    <option value="1">Linkshänder</option>
                 </select>
             </div>
 
             <div class="customizeobj" data-level=2>
                 <label for="mainwood">Körper Holz</label>
                 <select name="mainwood">
-                    <option>Mahagoni</option>
-                    <option>Black Korina</option>
-                    <option>Ahorn</option>
-                    <option>Pappel</option>
-                    <option>Walnuss</option>
+                    <option value="0">Mahagoni</option>
+                    <option value="1">Black Korina</option>
+                    <option value="2">Ahorn</option>
+                    <option value="3">Pappel</option>
+                    <option value="4">Walnuss</option>
                 </select>
             </div>
 
             <div class="customizeobj" data-level=2>
                 <label for="topwood">Körper Top Holz</label>
                 <select name="topwood">
-                    <option>Mahagoni</option>
-                    <option>Black Korina</option>
-                    <option>Ahorn</option>
-                    <option>Pappel</option>
-                    <option>Walnuss</option>
+                    <option value="0">Mahagoni</option>
+                    <option value="1">Black Korina</option>
+                    <option value="2">Ahorn</option>
+                    <option value="3">Pappel</option>
+                    <option value="4">Walnuss</option>
                 </select>
             </div>
 
             <div class="customizeobj" data-level=3>
                 <label for="mainlaminated">Körper mehrfach verleimt</label>
                 <select name="mainlaminated">
-                    <option>Ja (wird noch genauer besprochen)</option>
-                    <option>Nein</option>
+                    <option value="0">Ja (wird noch genauer besprochen)</option>
+                    <option value="1">Nein</option>
                 </select>
             </div>
 
             <div class="customizeobj" data-level=1>
                 <label for="controls">Controls Position</label>
                 <select name="controls">
-                    <option>Vorne</option>
-                    <option>Hinten</option>
+                    <option value="0">Vorne</option>
+                    <option value="1">Hinten</option>
                 </select>
             </div>
 
             <div class="customizeobj" data-level=1>
                 <label>Pickup Taschen</label>
-                <div>
-                    <input type="checkbox" name="pickuprouts" value="neck">
-                        <label for="neck">Neck</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="pickuprouts" value="Middle">
-                        <label for="middle">Middle</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="pickuprouts" value="Bridge">
-                        <label for="bridge">Bridge</label>
+                <div class="ml-5">
+                    <div>
+                        <input type="checkbox" name="pickuprouts" value="neck">
+                            <label for="neck">Neck</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="pickuprouts" value="Middle">
+                            <label for="middle">Middle</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="pickuprouts" value="Bridge">
+                            <label for="bridge">Bridge</label>
+                    </div>
                 </div>
             </div>
 
             <div class="customizeobj" data-level=1>
                 <label for="fhole">F Loch</label>
                 <select name="fhole">
-                    <option>Ja (Design später besprechen)</option>
-                    <option>Nein</option>
+                    <option value="0">Ja (Design später besprechen)</option>
+                    <option value="1">Nein</option>
                 </select>
             </div>
 
             <div class="customizeobj" data-level=1>
                 <label for="controlpanel">Control Panel</label>
                 <select name="controlpanel">
-                    <option>Platte</option>
-                    <option>ins Holz</option>
+                    <option value="0">Platte</option>
+                    <option value="1">ins Holz</option>
                 </select>
             </div>
 
             <div class="customizeobj" data-level=1>
                 <label for="inputjack">Kabelbuchse Position</label>
                 <select name="inputjack">
-                    <option>Vorne</option>
-                    <option>Rand</option>
-                    <option>Hinten</option>
+                    <option value="0">Vorne</option>
+                    <option value="1">Rand</option>
+                    <option value="2">Hinten</option>
                 </select>
             </div>
 
             <div class="customizeobj" data-level=2>
                 <label for="bridge">Bridge</label>
                 <select name="bridge">
-                    <option>Tremolo</option>
-                    <option>Hard Tail</option>
-                    <option disabled>Floyd Rose</option>
+                    <option value="0">Tremolo</option>
+                    <option value="1">Hard Tail</option>
+                    <option value="2" disabled>Floyd Rose</option>
                 </select>
             </div>
 
             <div class="customizeobj" data-level=2>
                 <label for="contour">Konturen</label>
-                <div>
-                    <input type="checkbox" name="contour" value="bellycut">
-                        <label for=bellycut>Belly Cut</label>
-                </div>    
-                <div>
-                    <input type="checkbox" name="contour" value="armrest">
-                        <label for="armrest">Armablage</label>
+                <div class="ml-5">
+                    <div>
+                        <input type="checkbox" name="contour" value="bellycut">
+                            <label for=bellycut>Belly Cut</label>
+                    </div>    
+                    <div>
+                        <input type="checkbox" name="contour" value="armrest">
+                            <label for="armrest">Armablage</label>
+                    </div>
                 </div>
             </div>
 
             <div class="customizeobj" data-level=3>
                 <label for="binding">Binding</label>
                 <select name="binding">
-                    <option>Nein</option>
-                    <option>Top Binding</option>
-                    <option>Back Binding</option>
+                    <option value="0">Nein</option>
+                    <option value="1">Top Binding</option>
+                    <option value="2">Back Binding</option>
                 </select>
             </div>
 
             <div class="customizeobj" data-level=1>
                 <label for="mainfinish">Finish</label>
                 <select name="mainfinish">
-                    <option>Geölt</option>
-                    <option>Klarlack Glänzend</option>
-                    <option>Klarlack Satin</option>
-                    <option>Farbig/Design</option>
+                    <option value="0">Geölt</option>
+                    <option value="1">Klarlack Glänzend</option>
+                    <option value="2">Klarlack Satin</option>
+                    <option value="3">Farbig/Design</option>
                 </select>
             </div>
 
             <div class="customizeobj" data-level=2>
                 <label for="neckwood">Hals Holz</label>
                 <select name="neckwood">
-                    <option>Mahagoni</option>
-                    <option>Ahorn</option>
+                    <option value="0">Mahagoni</option>
+                    <option value="1">Ahorn</option>
                 </select>
             </div>
 
             <div class="customizeobj" data-level=1>
                 <label for="headform">Kopf Form</label>
                 <select name="headform">
-                    <option>Stratocaster</option>
-                    <option>Telecaster</option>
-                    <option>Les Paul</option>
-                    <option>Custom</option>
+                    <option value="0">Stratocaster</option>
+                    <option value="1">Telecaster</option>
+                    <option value="2">Les Paul</option>
+                    <option value="3">Custom</option>
                 </select>
             </div>
 
             <div class="customizeobj" data-level=4>
                 <label for="nutwidth">Sattel Breite</label>
                 <select name="nutwidth">
-                    <option>Standard, modellabhängig, meist 42mm</option>
-                    <option><input type="text" name="customnutwidth"></option>
+                    <option value="0">Standard, modellabhängig, meist 42mm</option>
+                    <option value="1"><input type="text" name="customnutwidth"></option>
                 </select>
             </div>
 
             <div class="customizeobj" data-level=4>
                 <label for="neckradius">Griffbrett Radius</label>
                 <select name="neckradius">
-                    <option>10"</option>
-                    <option>11"</option>
-                    <option>12"</option>
-                    <option>16"</option>
+                    <option value="0">10"</option>
+                    <option value="1">11"</option>
+                    <option value="2">12"</option>
+                    <option value="3">16"</option>
                 </select>
             </div>
 
             <div class="customizeobj" data-level=4>
                 <label for="frets">Bünde</label>
                 <select name="frets">
-                    <option>22</option>
-                    <option>24</option>
+                    <option value="0">22</option>
+                    <option value="1">24</option>
                 </select>
             </div>
 
             <div class="customizeobj" data-level=4>
                 <label for="inlays">Inlays</label>
                 <select name="inlays">
-                    <option>Dot</option>
-                    <option>Crown</option>
-                    <option>Rectangle</option>
-                    <option>Custom</option>
+                    <option value="0">Dot</option>
+                    <option value="1">Crown</option>
+                    <option value="2">Rectangle</option>
+                    <option value="3">Custom</option>
                 </select>
             </div>
 
             <div class="customizeobj" data-level=1>
                 <label for="neckfinish">Hals Finish</label>
                 <select name="neckfinish">
-                    <option>Geölt</option>
-                    <option>Klarlack Glänzend</option>
-                    <option>Klarlack Satin</option>
-                    <option>Farbig/Design</option>
+                    <option value="0">Geölt</option>
+                    <option value="1">Klarlack Glänzend</option>
+                    <option value="2">Klarlack Satin</option>
+                    <option value="3">Farbig/Design</option>
                 </select>
             </div>
             
@@ -307,7 +310,6 @@
             </div>
         </div>
         </footer>
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="js/jquery-3.4.1.min.js"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="js/popper.min.js"></script>

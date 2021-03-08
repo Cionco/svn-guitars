@@ -8,3 +8,9 @@ nav .container {
     max-width: 100%;
     width: 100%
 }
+
+.vl {
+    width: 5px;
+    background-color: black;
+    height: 100%;
+}

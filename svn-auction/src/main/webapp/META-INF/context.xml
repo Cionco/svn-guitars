@@ -16,7 +16,7 @@
 		auth="Container"
 		type="javax.sql.DataSource"
 		driverClassName="com.mysql.cj.jdbc.Driver"
-		url="jdbc:mysql://remotemysql.com/6VuVvR4M8d"
+		url="jdbc:mysql://remotemysql.com/6VuVvR4M8d?useUnicode=true&amp;characterEncoding=utf8&amp;serverTimezone=Europe/Berlin"
 		username="6VuVvR4M8d"
 		password="1RNivWs9Mv"
 		maxActive="15"

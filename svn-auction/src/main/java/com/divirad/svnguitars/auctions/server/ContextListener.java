@@ -46,7 +46,7 @@ public class ContextListener implements ServletContextListener {
 		try {
 			Context initCtx = new InitialContext();
 			Context envCtx = (Context) initCtx.lookup("java:comp/env");
-			ds = (DataSource) envCtx.lookup("jdbc/read-o");
+			ds = (DataSource) envCtx.lookup("jdbc/AuctionDb");
 			System.out.println("Database Connection created successfully");
 		} catch (NamingException e) {
 			e.printStackTrace();

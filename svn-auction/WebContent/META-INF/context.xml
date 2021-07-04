@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Context>
+
+    <!-- Default set of monitored resources -->
+    <WatchedResource>WEB-INF/web.xml</WatchedResource>
+    
+    <Parameter name="hostname" value="Nicolas-Larry"
+         override="false"/>
+         
+     <!-- Parameter name="aws.s3.accessKey" value="****************" override="false"/>
+     <Parameter name="aws.s3.secretKey" value="****************" override="false"/-->
+         
+    <Resource
+		name="jdbc/AuctionDb"
+		auth="Container"
+		type="javax.sql.DataSource"
+		driverClassName="com.mysql.cj.jdbc.Driver"
+		url="jdbc:mysql://remotemysql.com/6VuVvR4M8d"
+		username="6VuVvR4M8d"
+		password="1RNivWs9Mv"
+		maxActive="15"
+		maxIdle="3"
+		
+		validationQuery="/* ping */"
+		testOnBorrow="true"
+		testWhileIdle="true"
+		timeBetweenEvictionRunsMillis="10000"
+		minEvictableIdleTimeMillis="60000"
+		
+		maxWait="-1" />
+
+</Context>

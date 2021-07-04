@@ -21,21 +21,17 @@ public class UserDao extends Dao<UserDTO>{
 	}
 
 	public boolean register(UserDTO u) {
-		try {
-			MessageDigest md = MessageDigest.getInstance("SHA-256");
-			u.password = UserDao.get_SHA_256_SecurePassword(u.password);
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-			return false;
-		}
-		
+		u.password = UserDao.get_SHA_256_SecurePassword(u.password);
 		insert(u);
 		return true;
 	}
 	
-	
-	
-	
+	public boolean check_login_creds(UserDTO u) {
+		u.password = UserDao.get_SHA_256_SecurePassword(u.password);
+		UserDTO u_db = select(u);
+		
+		return u_db != null && u.password.equals(u_db.password);
+	}
 	
 	
 	

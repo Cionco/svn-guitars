@@ -37,7 +37,7 @@ public class RegisterServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		UserDTO user = new UserDTO(-1, 
+		UserDTO user = new UserDTO( 
 				request.getParameter("user_name"), 
 				request.getParameter("password"),
 				request.getParameter("first_name"), 

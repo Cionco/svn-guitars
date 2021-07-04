@@ -6,8 +6,6 @@ import com.divirad.svnguitars.auctions.server.MysqlMarker;
 public final class UserDTO {
 
 	@MysqlMarker.PrimaryKey
-	@MysqlMarker.AutomaticValue
-	public int id;
 	public String user_name;
 	public String password;
 	public String first_name;
@@ -16,14 +14,16 @@ public final class UserDTO {
 	
 	public UserDTO() {}
 	
-	public UserDTO(int id, String user_name, String password, String first_name, String last_name) {
+	public UserDTO(String user_name, String password, String first_name, String last_name) {
 		super();
-		this.id = id;
 		this.user_name = user_name;
 		this.password = password;
 		this.first_name = first_name;
 		this.last_name = last_name;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return user_name;
+	}
 }

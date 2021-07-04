@@ -3,8 +3,7 @@
     %>
 <table><tr>
 <td><a href="index.jsp">Zurück zur Startseite</a> | </td>
-<td><a href="subjects/">Kurse</a> | </td>
-<td><a href="Homework/">Hausaufgaben</a> | </td>
+<td><a href="products.jsp">Produkte</a> | </td>
 <td><a href="LoginServlet">Logout: <%= session.getAttribute("loggedInUser") %></a></td>
 </tr></table>
 <% if(session.getAttribute("loggedInUser") == null) { %>

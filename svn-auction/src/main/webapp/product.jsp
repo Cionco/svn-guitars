@@ -8,14 +8,14 @@
 <head>
 <meta charset="ISO-8859-1">
   <title>Insert title here</title>
-  <% int product_id = Integer.parseInt(request.getParameter("id")); %>
-  <% ProductDTO p = ProductDao.instance.get_product_by_id(product_id); %>
+  <% String product = request.getParameter("sn"); %>
+  <% ProductDTO p = ProductDao.instance.get_product_by_serial_number(product); %>
 </head>
 <body>
   <jsp:include page="navbar.jsp"/>
 
-  <div style="height: 400px; width: 400px; background-color: red;">
-  	
+  <div style="height: 400px; width: 400px;">
+  	<img style="height: inherit;" src="NewProductServlet/<%= p.serial_number %>"/>
   </div>
   <div><b><%= p.name %></b></div>
   <div><textarea disabled rows=15 cols=150><%= p.description %></textarea></div>
@@ -24,9 +24,9 @@
   <hr>
   
   <div>
-  	<div>Count of bids: <%= BidDao.instance.get_bid_count_for_product(product_id) %></div>
-  	<div>Currently Highest Bid: <%= BidDao.instance.get_highest_bid_for_product(product_id) %></div>
-  	<div><form method="post" action="BidServlet"><input type="number" name="amount"><input type="hidden" name="product" value="<%= product_id %>"><button type="submit">Place Bid</button></form></div>
+  	<div>Count of bids: <%= BidDao.instance.get_bid_count_for_product(product) %></div>
+  	<div>Currently Highest Bid: <%= BidDao.instance.get_highest_bid_for_product(product) %></div>
+  	<div><form method="post" action="BidServlet"><input type="number" name="amount"><input type="hidden" name="product" value="<%= product %>"><button type="submit">Place Bid</button></form></div>
   </div>
   
 </body>

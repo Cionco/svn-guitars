@@ -10,7 +10,7 @@ public final class BidDTO {
 	@MysqlMarker.PrimaryKey
 	@MysqlMarker.AutomaticValue
 	public int id;
-	public int product;
+	public String product;
 	public String user_name;
 	@MysqlMarker.IgnoreField
 	public Timestamp bid_date;
@@ -18,7 +18,7 @@ public final class BidDTO {
 	
 	public BidDTO() {}
 
-	public BidDTO(int product, String user_name, Timestamp bid_date, double amount) {
+	public BidDTO(String product, String user_name, Timestamp bid_date, double amount) {
 		super();
 		this.product = product;
 		this.user_name = user_name;

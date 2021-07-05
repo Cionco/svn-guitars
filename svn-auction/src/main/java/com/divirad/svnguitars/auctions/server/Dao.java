@@ -146,6 +146,8 @@ public class Dao<T> {
                     ps.setTime(index, (Time) f.get(data));
                 else if (f.getType() == Timestamp.class)
                     ps.setTimestamp(index, (Timestamp) f.get(data));
+                else if (f.getType() == Blob.class)
+                	ps.setBlob(index, (Blob) f.get(data));
                 else
                     throw new IllegalStateException("Unknown type of field: " + f.getName() + ", " + f.getType().getName());
             }
@@ -202,6 +204,8 @@ public class Dao<T> {
                     f.set(result, rs.getTime(i));
                 else if (f.getType() == Timestamp.class)
                     f.set(result, rs.getTimestamp(i));
+                else if (f.getType() == Blob.class)
+                	f.set(result, rs.getBlob(i));
                 else
                     throw new IllegalStateException("Unknown type of field");
             }

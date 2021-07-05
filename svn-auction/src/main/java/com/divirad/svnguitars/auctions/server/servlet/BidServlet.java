@@ -36,7 +36,7 @@ public class BidServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 		BidDao.instance.bid(
-				Integer.parseInt(request.getParameter("product")), 
+				request.getParameter("product"), 
 				((UserDTO) request.getSession().getAttribute("loggedInUser")).user_name, 
 				Double.parseDouble(request.getParameter("amount")));
 		

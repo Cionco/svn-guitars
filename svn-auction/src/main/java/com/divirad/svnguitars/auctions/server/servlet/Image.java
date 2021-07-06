@@ -3,7 +3,6 @@ package com.divirad.svnguitars.auctions.server.servlet;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
-import java.util.Enumeration;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;

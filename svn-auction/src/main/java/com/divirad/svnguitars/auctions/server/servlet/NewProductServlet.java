@@ -1,23 +1,17 @@
 package com.divirad.svnguitars.auctions.server.servlet;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.sql.Date;
-import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
-import javax.sql.rowset.serial.SerialBlob;
 
-import com.divirad.svnguitars.auctions.server.rest.dao.ImgDao;
 import com.divirad.svnguitars.auctions.server.rest.dao.ProductDao;
-import com.divirad.svnguitars.auctions.server.rest.dto.ImgDTO;
 import com.divirad.svnguitars.auctions.server.rest.dto.ProductDTO;
 
 /**
@@ -65,21 +59,8 @@ public class NewProductServlet extends HttpServlet {
 				p.auction_start, 
 				p.auction_end);
 		
-		Part filePart = request.getPart("image");
-		if(filePart == null) {
-			response.sendError(HttpServletResponse.SC_BAD_REQUEST);
-			return;
-		}
-		
-		InputStream fileStream = filePart.getInputStream();
-		while(fileStream.available() != 0)
-			try {
-				ImgDao.instance.create(p.serial_number, new SerialBlob(fileStream.readAllBytes()));
-			} catch (SQLException | IOException ex) {
-				ex.printStackTrace();
-			}
-		
-		response.sendRedirect("products.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("Image");
+		rd.forward(request, response);
 		
 	}
 }

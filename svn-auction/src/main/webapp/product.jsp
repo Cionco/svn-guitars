@@ -10,6 +10,7 @@
 <meta charset="ISO-8859-1">
   <% String product = request.getParameter("sn"); %>
   <% ProductDTO p = ProductDao.instance.get_product_by_serial_number(product); %>
+  <% if(p ==  null) request.getRequestDispatcher("products.jsp").forward(request, response);%>
   <title>SVN - <%= p.name %></title>
 </head>
 <body>

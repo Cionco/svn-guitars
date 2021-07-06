@@ -50,7 +50,7 @@ public class ImgDao extends Dao<ImgDTO> {
 	 * @return ArrayList of ImgDTO objects with all the images
 	 */
 	@Deprecated
-	private ArrayList<ImgDTO> get_images(int product) {
+	public ArrayList<ImgDTO> get_images(int product) {
 		return Database.query("SELECT * FROM " + this.tableName + " WHERE product = ?", 
 				ps -> ps.setInt(1, product), 
 				this::convAllInResultSet);

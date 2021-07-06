@@ -40,7 +40,7 @@ public class BidServlet extends HttpServlet {
 				((UserDTO) request.getSession().getAttribute("loggedInUser")).user_name, 
 				Double.parseDouble(request.getParameter("amount")));
 		
-		response.sendRedirect("product.jsp?id=" + request.getParameter("product"));
+		response.sendRedirect(request.getServletContext().getContextPath() + "/Products/" + request.getParameter("product"));
 	}
 
 }

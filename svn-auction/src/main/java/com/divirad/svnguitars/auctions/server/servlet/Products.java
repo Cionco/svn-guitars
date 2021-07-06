@@ -38,6 +38,7 @@ public class Products extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setCharacterEncoding("UTF-8");
 		String ctx = request.getServletContext().getContextPath(); // svn-auction
 		if(request.getSession().getAttribute("loggedInUser") == null) {
 			request.getRequestDispatcher("login.jsp").forward(request, response);
@@ -56,7 +57,7 @@ public class Products extends HttpServlet {
 		String ctx = request.getServletContext().getContextPath(); // svn-auction
 		write(r, "<html>");
 		write(r, "  <head>");
-		write(r, "    <meta charset=\"ISO-8859-1\">");
+		write(r, "    <meta charset=\"UTF-8\">");
 		write(r, "    <title>SVN - Products</title>");
 		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 		write(r, "  </head>");
@@ -82,7 +83,7 @@ public class Products extends HttpServlet {
 		String ctx = request.getServletContext().getContextPath(); // svn-auction
 		write(r, "<html>");
 		write(r, "  <head>");
-		write(r, "    <meta charset=\"ISO-8859-1\">");
+		write(r, "    <meta charset=\"UTF-8\">");
 		ProductDTO p = ProductDao.instance.get_product_by_serial_number(serial_number);
 		write(r, "  <title>SVN - " + p.name + "</title>");
 		write(r, "</head>");
@@ -97,8 +98,8 @@ public class Products extends HttpServlet {
 		write(r, "  <hr>");
 		write(r, "  <div>");
 		write(r, "  	<div>Count of bids: " + BidDao.instance.get_bid_count_for_product(serial_number) + "</div>");
-		write(r, "  	<div>Currently Highest Bid: " + BidDao.instance.get_highest_bid_for_product(serial_number) + "</div>");
-		write(r, "  	<div><form method=\"post\" action=\"BidServlet\"><input type=\"number\" name=\"amount\"><input type=\"hidden\" name=\"product\" value=\"" + serial_number + "\"><button type=\"submit\">Place Bid</button></form></div>");
+		write(r, "  	<div>Currently Highest Bid: " + BidDao.instance.get_highest_bid_for_product(serial_number) + "€</div>");
+		write(r, "  	<div><form method=\"post\" action=\"" + ctx + "/BidServlet\"><input type=\"number\" name=\"amount\"><input type=\"hidden\" name=\"product\" value=\"" + serial_number + "\"><button type=\"submit\">Place Bid</button></form></div>");
 		write(r, "  </div>");
 		write(r, "  <hr>");
 		write(r, "  <div>");

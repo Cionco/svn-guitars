@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.divirad.svnguitars.auctions.server.rest.dao.BidDao;
+import com.divirad.svnguitars.auctions.server.rest.dao.ImgDao;
 import com.divirad.svnguitars.auctions.server.rest.dao.ProductDao;
 import com.divirad.svnguitars.auctions.server.rest.dto.ProductDTO;
 
@@ -37,6 +39,11 @@ public class NewProductServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String ctx = request.getServletContext().getContextPath(); // svn-auction
+		if(request.getSession().getAttribute("loggedInUser") == null) {
+			request.getRequestDispatcher("login.jsp").forward(request, response);
+			return;
+		}
+		
 		String res = request.getRequestURI().replace(request.getServletPath(), "")
 				.replace(ctx, "");
 		if(res.startsWith("/")) res = res.substring(1);
@@ -45,8 +52,8 @@ public class NewProductServlet extends HttpServlet {
 		else build_product_page(res, request, response);
 	}
 	
-	private void build_products_page(HttpServletRequest req, HttpServletResponse r) throws IOException, ServletException {
-		String ctx = req.getServletContext().getContextPath(); // svn-auction
+	private void build_products_page(HttpServletRequest request, HttpServletResponse r) throws IOException, ServletException {
+		String ctx = request.getServletContext().getContextPath(); // svn-auction
 		write(r, "<html>");
 		write(r, "  <head>");
 		write(r, "    <meta charset=\"ISO-8859-1\">");
@@ -54,7 +61,7 @@ public class NewProductServlet extends HttpServlet {
 		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 		write(r, "  </head>");
 		write(r, "  <body>");
-		build_navbar(req, r);		
+		build_navbar(request, r);		
 		for(ProductDTO p : ProductDao.instance.get_open_products()) {
 		write(r, "    <a href=\"" + ctx + "/Products/" + p.serial_number +"\">");
 		write(r, "      <div class=\"product-container\">");
@@ -71,19 +78,46 @@ public class NewProductServlet extends HttpServlet {
 		
 	}
 	
-	private void build_product_page(String serial_number, HttpServletRequest request, HttpServletResponse response) {
-		
+	private void build_product_page(String serial_number, HttpServletRequest request, HttpServletResponse r) throws ServletException, IOException {
+		String ctx = request.getServletContext().getContextPath(); // svn-auction
+		write(r, "<html>");
+		write(r, "  <head>");
+		write(r, "    <meta charset=\"ISO-8859-1\">");
+		ProductDTO p = ProductDao.instance.get_product_by_serial_number(serial_number);
+		write(r, "  <title>SVN - " + p.name + "</title>");
+		write(r, "</head>");
+		write(r, "<body>");
+		build_navbar(request, r);
+		write(r, "  <div style=\"height: 400px; width: 400px;\">");
+		write(r, "  	<img style=\"height: inherit;\" src=\"" + ctx + "/Image/" + p.serial_number + "\"/>");
+		write(r, "  </div>");
+		write(r, "  <div><b>" + p.name + "</b></div>");
+		write(r, "  <div><textarea disabled rows=15 cols=150>" + p.description + "</textarea></div>");
+		write(r, "  <div>Up for auction until: " + p.auction_end + "</div>");
+		write(r, "  <hr>");
+		write(r, "  <div>");
+		write(r, "  	<div>Count of bids: " + BidDao.instance.get_bid_count_for_product(serial_number) + "</div>");
+		write(r, "  	<div>Currently Highest Bid: " + BidDao.instance.get_highest_bid_for_product(serial_number) + "</div>");
+		write(r, "  	<div><form method=\"post\" action=\"BidServlet\"><input type=\"number\" name=\"amount\"><input type=\"hidden\" name=\"product\" value=\"" + serial_number + "\"><button type=\"submit\">Place Bid</button></form></div>");
+		write(r, "  </div>");
+		write(r, "  <hr>");
+		write(r, "  <div>");
+		for(int i = 1; i < ImgDao.instance.get_image_count_for_product(serial_number); i++) {
+		write(r, "  	  <div style=\"height: 200px; width: 200px; margin: 10px;\">");
+		write(r, "  		<img style=\"height: inherit;\" src=\"" + ctx + "/Image/" + p.serial_number + "/" + i + "\"/>");
+		write(r, "  	  </div>");
+		}
+		write(r, "    </div>");
+		write(r, "  </body>");
+		write(r, "</html>");
 	}
 	
-	private void build_navbar(HttpServletRequest req, HttpServletResponse r) throws IOException, ServletException {
-		HttpSession session = req.getSession();
+	private void build_navbar(HttpServletRequest request, HttpServletResponse r) throws IOException, ServletException {
+		HttpSession session = request.getSession();
 		Object loggedInUser = session.getAttribute("loggedInUser");
-		String ctx = req.getServletContext().getContextPath();
-		if(loggedInUser == null) 
-			req.getRequestDispatcher("/login.jsp").forward(req, r);
+		String ctx = request.getServletContext().getContextPath();
 		
 		write(r, "<table><tr>");
-		write(r, "<td><a href=\"../index.jsp\">Zurück zur Startseite</a> | </td>");
 		write(r, "<td><a href=\".\">Produkte</a> | </td>");
 		write(r, "<td><a href=\"" + ctx + "/LoginServlet\">Logout: " + loggedInUser + "</a></td>");
 		write(r, "</tr></table>");

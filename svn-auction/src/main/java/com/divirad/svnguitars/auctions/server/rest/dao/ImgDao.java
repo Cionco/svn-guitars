@@ -31,17 +31,37 @@ public class ImgDao extends Dao<ImgDTO> {
 	}
 	
 	/**
+	 * Load image with specified order for a product from the database
+	 * @param product serial number of the product
+	 * @param order order index with 0 being the front image
+	 * @return ImgDTO of the image
+	 */
+	public ImgDTO get_image_by_order(String product, int order) {
+		return Database.query("SELECT * FROM " + this.tableName + " WHERE product = ? AND order_img = ?", 
+				ps -> {
+					ps.setString(1, product);
+					ps.setInt(2, order);
+				}, this::convFirstInResultSet);
+	}
+	
+	/**
 	 * Load all images stored for a product from the database
 	 * @param product product id of the product
 	 * @return ArrayList of ImgDTO objects with all the images
 	 */
-	public ArrayList<ImgDTO> get_images(int product) {
+	@Deprecated
+	private ArrayList<ImgDTO> get_images(int product) {
 		return Database.query("SELECT * FROM " + this.tableName + " WHERE product = ?", 
 				ps -> ps.setInt(1, product), 
 				this::convAllInResultSet);
 	}
 	
-	private int get_image_count_for_product(String product) {
+	/**
+	 * Get number of images for a product from the database
+	 * @param product serial number of the product
+	 * @return amount of images stored for that product
+	 */
+	public int get_image_count_for_product(String product) {
 		return Database.query("SELECT COUNT(*) FROM " + this.tableName + " WHERE product = ?;", 
 				ps -> ps.setString(1, product), 
 				rs -> { rs.next(); return rs.getInt(1); });

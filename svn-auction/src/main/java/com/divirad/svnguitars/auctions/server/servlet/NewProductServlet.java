@@ -2,6 +2,7 @@ package com.divirad.svnguitars.auctions.server.servlet;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.divirad.svnguitars.auctions.server.rest.dao.ProductDao;
 import com.divirad.svnguitars.auctions.server.rest.dto.ProductDTO;
@@ -17,7 +19,7 @@ import com.divirad.svnguitars.auctions.server.rest.dto.ProductDTO;
 /**
  * Servlet implementation class NewProductServlet
  */
-@WebServlet({"/NewProductServlet", "/NewProductServlet/*"})
+@WebServlet({"/NewProductServlet", "/Products", "/Products/*"})
 @MultipartConfig
 public class NewProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -34,7 +36,57 @@ public class NewProductServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String ctx = request.getServletContext().getContextPath(); // svn-auction
+		String res = request.getRequestURI().replace(request.getServletPath(), "")
+				.replace(ctx, "");
+		if(res.startsWith("/")) res = res.substring(1);
+
+		if(res.length() == 0) build_products_page(request, response);
+		else build_product_page(res, request, response);
+	}
+	
+	private void build_products_page(HttpServletRequest req, HttpServletResponse r) throws IOException, ServletException {
+		String ctx = req.getServletContext().getContextPath(); // svn-auction
+		write(r, "<html>");
+		write(r, "  <head>");
+		write(r, "    <meta charset=\"ISO-8859-1\">");
+		write(r, "    <title>SVN - Products</title>");
+		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+		write(r, "  </head>");
+		write(r, "  <body>");
+		build_navbar(req, r);		
+		for(ProductDTO p : ProductDao.instance.get_open_products()) {
+		write(r, "    <a href=\"" + ctx + "/Products/" + p.serial_number +"\">");
+		write(r, "      <div class=\"product-container\">");
+		write(r, "        <div style=\"height: 400px; width: 400px;\">");
+		write(r, "          <img style=\"height: inherit;\" src=\"" + ctx + "/Image/" + p.serial_number + "\">");
+		write(r, "        </div>");
+		write(r, "        <div><b>" + p.name + "</b></div>");
+		write(r, "        <div>Auction until: " + formatter.format(p.auction_end) + "</div>");
+		write(r, "      </div>");
+		write(r, "    </a>");
+		}
+		write(r, "  </body>");
+		write(r, "</html>");
 		
+	}
+	
+	private void build_product_page(String serial_number, HttpServletRequest request, HttpServletResponse response) {
+		
+	}
+	
+	private void build_navbar(HttpServletRequest req, HttpServletResponse r) throws IOException, ServletException {
+		HttpSession session = req.getSession();
+		Object loggedInUser = session.getAttribute("loggedInUser");
+		String ctx = req.getServletContext().getContextPath();
+		if(loggedInUser == null) 
+			req.getRequestDispatcher("/login.jsp").forward(req, r);
+		
+		write(r, "<table><tr>");
+		write(r, "<td><a href=\"../index.jsp\">Zurück zur Startseite</a> | </td>");
+		write(r, "<td><a href=\".\">Produkte</a> | </td>");
+		write(r, "<td><a href=\"" + ctx + "/LoginServlet\">Logout: " + loggedInUser + "</a></td>");
+		write(r, "</tr></table>");
 	}
 
 	/**
@@ -62,5 +114,9 @@ public class NewProductServlet extends HttpServlet {
 		RequestDispatcher rd = request.getRequestDispatcher("Image");
 		rd.forward(request, response);
 		
+	}
+	
+	private void write(HttpServletResponse response, String html) throws IOException {
+		response.getWriter().append(html);
 	}
 }

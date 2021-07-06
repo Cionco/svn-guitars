@@ -35,7 +35,7 @@ public class LoginServlet extends HttpServlet {
 		session.removeAttribute("loggedInUser");
 		session.invalidate();
 		
-		response.sendRedirect((request.getParameter("reqcamefrom") == null)?request.getHeader("referer"):request.getParameter("reqcamefrom"));
+		response.sendRedirect("Products");
 	}
 
 	/**
@@ -54,7 +54,7 @@ public class LoginServlet extends HttpServlet {
 			session.invalidate();
 		}
 		
-		response.sendRedirect((request.getParameter("reqcamefrom") == null)?request.getHeader("referer"):request.getParameter("reqcamefrom"));
+		response.sendRedirect("Products");
 	}
 
 }

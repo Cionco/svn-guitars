@@ -8,16 +8,18 @@ public final class UserDTO {
 	@MysqlMarker.PrimaryKey
 	public String user_name;
 	public String password;
+	public String email;
 	public String first_name;
 	public String last_name;
 	
 	
 	public UserDTO() {}
 	
-	public UserDTO(String user_name, String password, String first_name, String last_name) {
+	public UserDTO(String user_name, String password, String email, String first_name, String last_name) {
 		super();
 		this.user_name = user_name;
 		this.password = password;
+		this.email = email;
 		this.first_name = first_name;
 		this.last_name = last_name;
 	}

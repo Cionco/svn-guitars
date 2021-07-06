@@ -10,6 +10,7 @@
 
   <form method="post" action="RegisterServlet">
     <input type=text name="user_name" placeholder="User Name"><br>
+    <input type="email" name="email" placeholder="Email Address"><br>
     <input type=text name="first_name" placeholder="First Name"><br>
     <input type=text name="last_name" placeholder="Last Name"><br>
     <input type=password name="password" placeholder="Password"><br>

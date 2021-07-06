@@ -40,6 +40,7 @@ public class RegisterServlet extends HttpServlet {
 		UserDTO user = new UserDTO( 
 				request.getParameter("user_name"), 
 				request.getParameter("password"),
+				request.getParameter("email"),
 				request.getParameter("first_name"), 
 				request.getParameter("last_name"));
 		

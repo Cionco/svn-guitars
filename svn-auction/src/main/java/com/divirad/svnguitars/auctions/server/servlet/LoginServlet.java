@@ -44,7 +44,7 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		
-		UserDTO u = new UserDTO(request.getParameter("user_name"), request.getParameter("password"), null, null);
+		UserDTO u = new UserDTO(request.getParameter("user_name"), request.getParameter("password"), null, null, null);
 		if(UserDao.instance.check_login_creds(u)) {
 			session.setAttribute("loggedInUser", u);
 		}

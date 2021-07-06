@@ -21,15 +21,15 @@ import com.divirad.svnguitars.auctions.server.rest.dto.ProductDTO;
 /**
  * Servlet implementation class NewProductServlet
  */
-@WebServlet({"/NewProductServlet", "/Products", "/Products/*"})
+@WebServlet({"/Products", "/Products/*"})
 @MultipartConfig
-public class NewProductServlet extends HttpServlet {
+public class Products extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NewProductServlet() {
+    public Products() {
         super();
         // TODO Auto-generated constructor stub
     }

@@ -8,7 +8,7 @@
 </head>
 <body>
 
-	<form method="post" action="NewProductServlet" enctype="multipart/form-data">
+	<form method="post" action="Products" enctype="multipart/form-data">
 	  <div><input type="text" name="name" placeholder="Name"></div>
 	  <div><textarea name="description" placeholder="Description" rows=15 cols=150></textarea></div>
 	  <div><input type="text" name="serial_number" placeholder="Serial Number"></div>

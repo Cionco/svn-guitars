@@ -1,0 +1,90 @@
+.title {
+    text-align: center;
+    margin: auto;
+}
+
+.indent {
+	text-indent: 20px;
+}
+
+.container {
+    width: 100%;
+    display: block;
+    height: auto;
+}
+
+.product-images {
+    width: 66%;
+    height: 80%;
+    display: inline-block;
+    position: relative;
+}
+
+.product-description {
+    display: inline-block;
+}
+
+.main-image {
+    height: 100%;
+    width: auto;
+    display: inline;
+    float: right;
+    margin-right: 10px;
+}
+
+.main-image-container {
+    width: 50%;
+    display: inline-block;
+}
+
+.secondary-images-container {
+    display: inline;
+    height: 100%;
+    width: 50%;
+    float: right;
+}
+
+.secondary-image-container {
+    display: inline-block;
+    position: relative;
+    max-height: 200px;
+    max-width: 200px;
+    margin: 0px 10px;
+}
+
+.secondary-image {
+    height: 100%;
+}
+
+.secondary-image-row {
+    height: 200px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+}
+
+.data-container {
+	float: right;
+	width: 34%;
+}
+
+.product-description p {
+	margin-block-start: 0.5em;
+    margin-block-end: 0.5em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+.bidding-rect table {
+    background-color: gray;
+    font-weight: bold;
+}
+
+.bidding-rect td {
+    width: 50%;
+    font-weight: bold;
+}
+
+.bidding-rect button {
+    margin-left: 50%;
+    transform: translate(-50%, 0);
+}

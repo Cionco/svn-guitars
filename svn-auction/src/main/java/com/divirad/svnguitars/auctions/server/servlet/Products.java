@@ -84,31 +84,85 @@ public class Products extends HttpServlet {
 		write(r, "<html>");
 		write(r, "  <head>");
 		write(r, "    <meta charset=\"UTF-8\">");
+		write(r, "	  <link rel=\"StyleSheet\" href=\"" + ctx + "/css/product.css\" type=\"text/css\">");
 		ProductDTO p = ProductDao.instance.get_product_by_serial_number(serial_number);
 		write(r, "  <title>SVN - " + p.name + "</title>");
 		write(r, "</head>");
 		write(r, "<body>");
 		build_navbar(request, r);
-		write(r, "  <div style=\"height: 400px; width: 400px;\">");
-		write(r, "  	<img style=\"height: inherit;\" src=\"" + ctx + "/Image/" + p.serial_number + "\"/>");
-		write(r, "  </div>");
-		write(r, "  <div><b>" + p.name + "</b></div>");
-		write(r, "  <div><textarea disabled rows=15 cols=150>" + p.description + "</textarea></div>");
-		write(r, "  <div>Up for auction until: " + p.auction_end + "</div>");
-		write(r, "  <hr>");
-		write(r, "  <div>");
-		write(r, "  	<div>Count of bids: " + BidDao.instance.get_bid_count_for_product(serial_number) + "</div>");
-		write(r, "  	<div>Currently Highest Bid: " + BidDao.instance.get_highest_bid_for_product(serial_number) + "€</div>");
-		write(r, "  	<div><form method=\"post\" action=\"" + ctx + "/BidServlet\"><input type=\"number\" name=\"amount\"><input type=\"hidden\" name=\"product\" value=\"" + serial_number + "\"><button type=\"submit\">Place Bid</button></form></div>");
-		write(r, "  </div>");
-		write(r, "  <hr>");
-		write(r, "  <div>");
-		for(int i = 1; i < ImgDao.instance.get_image_count_for_product(serial_number); i++) {
-		write(r, "  	  <div style=\"height: 200px; width: 200px; margin: 10px;\">");
-		write(r, "  		<img style=\"height: inherit;\" src=\"" + ctx + "/Image/" + p.serial_number + "/" + i + "\"/>");
-		write(r, "  	  </div>");
-		}
-		write(r, "    </div>");
+		write(r, "  <div class=\"title\">");
+        write(r, "  	<h1>" + p.name + "</h1>");
+	    write(r, "  </div>");
+	    write(r, "  <div class=\"container\">");
+	    write(r, "      <div class=\"product-images\">");
+
+	    write(r, "          <div class=\"main-image-container\">");
+	    write(r, "              <img class=\"main-image\" src=\"" + ctx + "/Image/" + p.serial_number + "\">");
+	    write(r, "          </div>");
+	    
+	    
+	    int secondary_image_count = ImgDao.instance.get_image_count_for_product(serial_number) - 1;
+	    
+	    write(r, "          <div class=\"secondary-images-container\">");
+	    
+	    for(int i = 0; i < 3; i++) {
+	    	
+	    	write(r, "          <div class=\"secondary-image-row\">");
+	    
+	    	for(int j = i; j < secondary_image_count; j += 3) {
+	    			write(r, "          <div class=\"secondary-image-container\">");
+	    			write(r, "              <img class=\"secondary-image\" src=\"" + ctx + "/Image/" + p.serial_number + "/" + (j + 1) + "\">");
+	    			write(r, "          </div>");
+	    	}
+	    		
+	    	write(r, "      	</div>");
+	    }
+	    write(r, "			</div>");
+	    write(r, "      </div>");
+	    write(r, "      <div class=\"data-container\">");
+	    write(r, "      	<div class=\"product-description\">");
+	    
+	    for(String s : p.description.split("\r\n")) {
+	    	if(s.length() == 0)
+	    		write(r, "		<br>");
+	    	else if(s.split(":").length == 1)
+	    		write(r, "		<p" + ((s.startsWith("---") && s.endsWith("---"))?("><b>" + s + "</b>") : " class=\"indent\">" + s) + "</p>");
+	    	else {
+	    		String property = s.split(":")[0];
+	    		String value = s.split(":")[1];
+	    		write(r, "		<p><b>" + property + ": </b>" + value + "</p>");
+	    	}
+	    }
+	    write(r, "      	</div>");
+	    write(r, "  		<hr>");
+	    write(r, "  		<div>Up for auction until: " + p.auction_end + "</div>");
+	    write(r, "  		<hr>");
+	    write(r, "  		<div class=\"bidding-rect\">");
+	    write(r, "				<form method=\"post\" action=\"\" + ctx + \"/BidServlet\">");
+	    write(r, "					<table>");
+	    write(r, "						<tr>");
+	    write(r, "							<td>Bids</td>");
+	    write(r, "							<td><input disabled value=\"" + BidDao.instance.get_bid_count_for_product(serial_number) + "\"></td>");
+	    write(r, "						</tr>");
+	    write(r, "						<tr>");
+	    write(r, "							<td>Highest bid</td>");
+	    write(r, "							<td><input disabled value=\"" + BidDao.instance.get_highest_bid_for_product(serial_number) + "€\"></td>");
+	    write(r, "						</tr>");
+	    write(r, "						<tr>");
+	    write(r, "							<td>Your bid</td>");
+	    write(r, "							<td><input type=\"number\" name=\"amount\"><input type=\"hidden\" name=\"product\" value=\"\" + serial_number + \"\"></td>");
+	    write(r, "						</tr>");
+	    write(r, "						<tr>");
+	    write(r, "							<td colspan=2><button type=\"submit\"><b>Place Bid</b></button></td>");
+	    write(r, "						</tr>");
+	    write(r, "					</table>");
+	    write(r, "  	    	</form>");
+	    write(r, "  		</div>");
+	    write(r, "		</div>");
+	    write(r, "  </div>");
+	    
+	    
+	    
 		write(r, "  </body>");
 		write(r, "</html>");
 	}

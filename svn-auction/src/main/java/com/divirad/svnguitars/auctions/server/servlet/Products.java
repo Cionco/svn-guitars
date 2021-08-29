@@ -85,6 +85,7 @@ public class Products extends HttpServlet {
 		write(r, "  <head>");
 		write(r, "    <meta charset=\"UTF-8\">");
 		write(r, "	  <link rel=\"StyleSheet\" href=\"" + ctx + "/css/product.css\" type=\"text/css\">");
+		write(r, "	  <link rel=\"StyleSheet\" href=\"" + ctx + "/css/modal.css\" type=\"text/css\">");
 		ProductDTO p = ProductDao.instance.get_product_by_serial_number(serial_number);
 		write(r, "  <title>SVN - " + p.name + "</title>");
 		write(r, "</head>");
@@ -161,6 +162,7 @@ public class Products extends HttpServlet {
 	    write(r, "		</div>");
 	    write(r, "  </div>");
 	    
+	    write(r, "  <script src=\"" + ctx + "/js/modal.js\"></script>");
 	    
 	    
 		write(r, "  </body>");
